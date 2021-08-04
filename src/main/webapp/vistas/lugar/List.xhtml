@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLugarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListLugarEmpty}" rendered="#{lugarController.items.rowCount == 0}"/>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><i class="fas fa-map-marked-alt"></i> </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                           
+                            <li class="nav-item">
+                                <h:form>
+                                <h:commandLink class="nav-link active"  action="#{lugarController.prepareCreate}">
+                                   <i class="fas fa-map-marked-alt"></i>  #{bundle.ListLugarCreateLink}
+                                </h:commandLink>
+                                </h:form>
+                            </li>
+                            <li class="nav-item">
+                                
+                                <h:link  class="nav-link active" outcome="/index">
+                                    <i class="fas fa-home"></i> #{bundle.ListLugarIndexLink}
+                                </h:link>
+                            </li>
+                            
+                        </ul>
+                        
+                        <div class="d-flex">
+                            <input type="search" class="card-filter form-control" placeholder="Buscar..." autocomplete="off"/>
+                                
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <h:form prependId="false">
+                <div class="album py-1 bg-light mt-2">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <ui:repeat id="lugares" value="#{lugarController.items}" var="item" rendered="#{searchLugarController.b}">
+
+                            <div class="card shadow-sm me-3" style="width: 27rem;">
+                                <div class="card-body">
+                                    <h6 class="card-title fw-bold">#{item.nombre}</h6>
+                                    <h:graphicImage class="card-img-top" width="382px" height="188px" value="#{item.imagen}"/>
+                                    <span class="badge rounded-pill bg-primary"> Categoria :#{item.categoria}</span>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <h:commandLink class="btn btn-warning btn-sm" action="#{lugarController.prepareView}" value="#{bundle.ListLugarViewLink}"/>
+                                        <h:commandLink class="btn btn-success btn-sm" action="#{lugarController.prepareEdit}" value="#{bundle.ListLugarEditLink}"/>
+                                        <h:commandLink class="btn btn-danger btn-sm" action="#{lugarController.destroy}" value="#{bundle.ListLugarDestroyLink}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ui:repeat>
+
+                    </div>
+                </div>
+               
+            </h:form>
+            
+            <script>
+                var d = document;
+                function searchFilter() {
+                    d.addEventListener("keyup", e => {
+                        if (e.target.matches(".card-filter")) {
+                            //console.log(e.target.value);
+                            d.querySelectorAll('.card').forEach((el) =>
+                                el.textContent.toLowerCase().includes(e.target.value)
+                                        ? el.classList.remove("order-1", "animate__animated", "animate__zoomOut")
+                                        : el.classList.add("order-1", "animate__animated", "animate__zoomOut")
+
+                            );
+                        }
+                    });
+                }
+                searchFilter();
+            </script>
+        </ui:define>
+    </ui:composition>
+
+</html>

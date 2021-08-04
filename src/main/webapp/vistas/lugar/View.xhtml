@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLugarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLugarLabel_idLugar}"/>
+                    <h:outputText value="#{lugarController.selected.idLugar}" title="#{bundle.ViewLugarTitle_idLugar}"/>
+                    <h:outputText value="#{bundle.ViewLugarLabel_nombre}"/>
+                    <h:outputText value="#{lugarController.selected.nombre}" title="#{bundle.ViewLugarTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewLugarLabel_descripcion}"/>
+                    <h:outputText value="#{lugarController.selected.descripcion}" title="#{bundle.ViewLugarTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewLugarLabel_puntox}"/>
+                    <h:outputText value="#{lugarController.selected.puntox}" title="#{bundle.ViewLugarTitle_puntox}"/>
+                    <h:outputText value="#{bundle.ViewLugarLabel_puntoy}"/>
+                    <h:outputText value="#{lugarController.selected.puntoy}" title="#{bundle.ViewLugarTitle_puntoy}"/>
+                    <h:outputText value="#{bundle.ViewLugarLabel_imagen}"/>
+                    <h:outputText value="#{lugarController.selected.imagen}" title="#{bundle.ViewLugarTitle_imagen}"/>
+                    <h:outputText value="#{bundle.ViewLugarLabel_categoria}"/>
+                    <h:outputText value="#{lugarController.selected.categoria.nombre}" title="#{bundle.ViewLugarTitle_categoria1}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{lugarController.destroyAndView}" value="#{bundle.ViewLugarDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLugarEditLink}"/>
+                <br />
+                <h:commandLink action="#{lugarController.prepareCreate}" value="#{bundle.ViewLugarCreateLink}" />
+                <br />
+                <h:commandLink action="#{lugarController.prepareList}" value="#{bundle.ViewLugarShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLugarIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLugarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form enctype="multipart/form-data">
+                <h:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.CreateLugarLabel_nombre}" for="nombre" />
+                            <h:inputText class="form-control form-control-sm" id="nombre" value="#{lugarController.selected.nombre}" title="#{bundle.CreateLugarTitle_nombre}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_nombre}"/>
+                            <h:outputLabel value="#{bundle.CreateLugarLabel_descripcion}" for="descripcion" />
+                            <h:inputTextarea class="form-control form-control-sm" id="descripcion" value="#{lugarController.selected.descripcion}" title="#{bundle.CreateLugarTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_descripcion}"/>
+                            <h:outputLabel value="#{bundle.CreateLugarLabel_puntox}" for="puntox" />
+                            <h:inputText class="form-control form-control-sm" id="puntox" value="#{lugarController.selected.puntox}" title="#{bundle.CreateLugarTitle_puntox}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntox}"/>
+                            <h:outputLabel value="#{bundle.CreateLugarLabel_puntoy}" for="puntoy" />
+                            <h:inputText class="form-control form-control-sm" id="puntoy" value="#{lugarController.selected.puntoy}" title="#{bundle.CreateLugarTitle_puntoy}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntoy}"/>
+                            <h:outputLabel value="#{bundle.CreateLugarLabel_imagen}" for="imagen" />
+                            <h:inputFile  id="file-id"  value="#{lugarController.imagen}" alt="upload file"></h:inputFile> 
+                            <h:outputLabel value="#{bundle.CreateLugarLabel_categoria}" for="categoria" />
+                            <h:selectOneMenu class="form-select form-select-sm" id="categoria1" value="#{lugarController.selected.categoria}" title="#{bundle.CreateLugarTitle_categoria1}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_categoria1}">
+                                <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                <h:commandLink action="#{lugarController.update}" value="#{bundle.EditLugarSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLugarViewLink}"/>
+                <br />
+                <h:commandLink action="#{lugarController.prepareList}" value="#{bundle.EditLugarShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLugarIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
