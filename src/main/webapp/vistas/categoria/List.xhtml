@@ -19,7 +19,7 @@
                     <h:outputText value="#{categoriaController.pagination.pageFirstItem + 1}..#{categoriaController.pagination.pageLastItem + 1}/#{categoriaController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{categoriaController.previous}" value="#{bundle.Previous} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{categoriaController.next}" value="#{bundle.Next} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{categoriaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable class="table table-hover" value="#{categoriaController.items}" var="item">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_idCategoria}"/>
@@ -34,13 +34,19 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
+                                <h:outputText value="Acciones"/>
                             </f:facet>
-                            <h:commandLink action="#{categoriaController.prepareView}" value="#{bundle.ListCategoriaViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{categoriaController.prepareEdit}" value="#{bundle.ListCategoriaEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{categoriaController.destroy}" value="#{bundle.ListCategoriaDestroyLink}"/>
+                            <h:commandLink class="btn btn-default btn-sm" action="#{categoriaController.prepareView}">
+                             <i class="fas fa-bars"/> #{bundle.ListCategoriaViewLink}
+                            </h:commandLink>
+                                <h:outputText value=" "/>
+                            <h:commandLink class="btn btn-default btn-sm" action="#{categoriaController.prepareEdit}">
+                            <i class="far fa-edit text-primary"/> #{bundle.ListCategoriaEditLink}
+                            </h:commandLink>
+                                <h:outputText value=" "/>
+                            <h:commandLink class="btn btn-default btn-sm" action="#{categoriaController.destroy}">
+                                <i class="far fa-trash-alt text-danger"/> #{bundle.ListCategoriaDestroyLink}
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
