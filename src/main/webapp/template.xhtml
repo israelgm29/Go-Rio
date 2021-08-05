@@ -6,8 +6,10 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="mdb.min.css"/>
+        <h:outputStylesheet library="css" name="sideMenu.css"/>
         <h:outputStylesheet library="css" name="Control.Geocoder.css"/>
         <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
         <h:outputScript library="js" name="all.js"/>
@@ -16,17 +18,142 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             />
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
     </h:head>
 
     <h:body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Navbar brand -->
+                    <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                        
+                        <h:graphicImage height="60" value="#{resource['img/logo.png']}"/>
+                        
+                    </a>
+                    
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <h:link  class="nav-link active" outcome="/index">
+                                <i class="fas fa-home"/> #{bundle.ListLugarIndexLink}
+                            </h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link active"  outcome="/vistas/lugar/List">   
+                                <i class="fas fa-camera-retro"/> Sitios Turisticos
+                            </h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link active"  outcome="/vistas/categoria/List">
+                                <i class="far fa-comments"/> Categorias
+                            </h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link active"  outcome="/vistas/pais/List">
+                                <i class="fas fa-globe-americas"/> Paises
+                            </h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link active"  outcome="/vistas/usuario/List">
+                            <i class="fas fa-user-astronaut"></i> Usuarios
+                            </h:link>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
+                </div>
+                <!-- Collapsible wrapper -->
+
+                <!-- Right elements -->
+                <div class="d-flex align-items-center">
+                    <!-- Icon -->
+                    <a class="text-reset me-3" href="#">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+
+                    <!-- Notifications -->
+                    <a
+                        class="text-reset me-3 dropdown-toggle hidden-arrow"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                        >
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a>
+                    <ul
+                        class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="navbarDropdownMenuLink"
+                        >
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+
+                    <!-- Avatar -->
+                    <a
+                        class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                        >
+                        <h:graphicImage class="mg-fluid rounded-circle"  height="40" width="40" value="#{resource['img/profile.jpg']}"/>
+                    </a>
+                    <ul
+                        class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="navbarDropdownMenuLink"
+                        >
+                        <li>
+                            <a class="dropdown-item" href="#">Mi Perfil</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Configuraciones</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Right elements -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
         <div class="container-fluid">
-            <h1>
+            <h5>
                 <ui:insert name="title">Default Title</ui:insert>
-            </h1>
+            </h5>
             <p>
                 <ui:insert name="body">Default Body</ui:insert>
             </p>
         </div>
+        <h:outputScript library="js" name="mdb.min.js"/>
     </h:body>
 
 </html>
