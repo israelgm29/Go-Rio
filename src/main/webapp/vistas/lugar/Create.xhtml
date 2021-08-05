@@ -13,12 +13,7 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <div class="alert alert-dismissible alert-light">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>!Atención¡</strong> Para seleccionar un punto en el mapa, haga click en la zona deseada, 
-                el puntero por defecto es <h:graphicImage width="30px" height="30px" value="#{resource['img/mark.png']}"/>.
-                Si utiliza el buscador automaticamente aparecera un marcador azul pero este es solo de referencia.
-            </div>
+
             <div class="row">
                 <div class="col-12 col-md-8">
                     <div class="container">
@@ -27,32 +22,49 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <h4>Datos del Lugar</h4>
-                    <h:form prependId="false" enctype="multipart/form-data" >
-                        <h:panelGrid columns="2">
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_nombre}" for="nombre" />
+                    <h:form class="row g-3" prependId="false" enctype="multipart/form-data" >
+
+                        <div class="form-outline">
                             <h:inputText class="form-control form-control-sm" id="nombre" value="#{lugarController.selected.nombre}" title="#{bundle.CreateLugarTitle_nombre}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_nombre}"/>
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_descripcion}" for="descripcion" />
+                            <h:outputLabel class="form-label" value="#{bundle.CreateLugarLabel_nombre}" for="nombre" />
+                        </div>
+                        <div class="form-outline">
                             <h:inputTextarea class="form-control form-control-sm" id="descripcion" value="#{lugarController.selected.descripcion}" title="#{bundle.CreateLugarTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_descripcion}"/>
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_puntox}" for="puntox" />
+                            <h:outputLabel class="form-label" value="#{bundle.CreateLugarLabel_descripcion}" for="descripcion" />
+                        </div>
+                        <div class="form-outline">       
                             <h:inputText class="form-control form-control-sm" id="puntox" value="#{lugarController.selected.puntox}" title="#{bundle.CreateLugarTitle_puntox}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntox}"/>
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_puntoy}" for="puntoy" />
+                            <h:outputLabel class="form-label" value="#{bundle.CreateLugarLabel_puntox}" for="puntox" />
+                            <i class="fas fa-street-view"></i>
+                        </div>
+                        <div class="form-outline">
                             <h:inputText class="form-control form-control-sm" id="puntoy" value="#{lugarController.selected.puntoy}" title="#{bundle.CreateLugarTitle_puntoy}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntoy}"/>
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_imagen}" for="imagen" />
-                            <h:inputFile  id="file-id"  value="#{lugarController.imagen}" required="true"   
-                                          requiredMessage="Please upload a file" alt="upload file"></h:inputFile> 
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_categoria}" for="categoria" />
+                            <h:outputLabel class="form-label" value="#{bundle.CreateLugarLabel_puntoy}" for="puntoy" />
+                            <i class="fas fa-street-view"></i>
+                        </div>
+                        <div class="form-outline">
+                            <i class="fas fa-exclamation-circle trailing"></i>
+                            <h:inputFile  class="form-control form-control-sm" id="file-id"  value="#{lugarController.imagen}" required="true"   
+                                          requiredMessage="Please upload a file" alt="upload file">
+                            </h:inputFile> 
+                        </div>
+                        <div id="textExample1" class="form-text">
+                            Seleccionar una imagen para cargarla
+                        </div>
+                        <div class="form-outline">
                             <h:selectOneMenu class="form-select form-select-sm" id="categoria" value="#{lugarController.selected.categoria}" title="#{bundle.CreateLugarTitle_categoria}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_categoria}">
                                 <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
                             </h:selectOneMenu>
-                        </h:panelGrid>
-                        <br />
-                        <h:commandLink class="btn btn-success" action="#{lugarController.newImage()}" value="#{bundle.CreateLugarSaveLink}" />
-                        <br />
-                        <br />
-                        <h:commandLink action="#{lugarController.prepareList}" value="#{bundle.CreateLugarShowAllLink}" immediate="true"/>
-                        <br />
-                        <br />
-                        <h:link outcome="/index" value="#{bundle.CreateLugarIndexLink}"/>
+                        </div>
+                        <div id="textExample1" class="form-text">
+                            Seleccionar una categoria para el sitio turistico
+                        </div>
+                        <div>
+                            <h:commandLink class="btn btn-primary d-inline" action="#{lugarController.newImage()}" value="#{bundle.CreateLugarSaveLink}" />
+                            <h:commandLink class="btn btn-light d-inline ms-2" action="#{lugarController.prepareList}" value="#{bundle.CreateLugarShowAllLink}" immediate="true"/>
+
+                        </div>
+
                     </h:form>
                 </div>
             </div>
@@ -81,32 +93,32 @@
                     document.getElementById("puntoy").value = lon;
                     console.log(lat);
                 });
-                
-                
+
+
                 L.Control.Watermark = L.Control.extend({
                     onAdd: function (map) {
                         var img = L.DomUtil.create('img');
-                        
+
                         img.src = '#{resource['img/Rio.png']}';
                         img.style.width = '100px';
-                        
+
                         return img;
                     },
-                    
+
                     onRemove: function (map) {
                         // Nothing to do here
                     }
                 });
-                
+
                 L.control.watermark = function (opts) {
                     return new L.Control.Watermark(opts);
                 }
-                
+
                 L.control.watermark({position: 'bottomleft'}).addTo(mymap);
                 L.Control.geocoder({
                     geocoder: L.Control.Geocoder.nominatim()
                 }).addTo(mymap);
-                
+
             </script>
         </ui:define>
     </ui:composition>
