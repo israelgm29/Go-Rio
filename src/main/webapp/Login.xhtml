@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="mdb.min.css"/>
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+            />
+        <h:outputScript library="js" name="all.js"/>
+    </h:head>
+    <h:body>
+
+        <div class="container-fluid">
+            <div class="row  bg-image" style="background: url('#{resource['img/bg2.svg']}') no-repeat">
+
+                <div class="col-12 col-sm-7 align-self-end">
+                    <h:graphicImage width="500px" value="#{resource['img/bg4.svg']}"/>
+                    <footer class="bg-light text-center d-flex align-items-center">            
+
+                        <!-- Facebook -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="https://www.facebook.com/mainfrek/"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-facebook-f"></i
+                            ></a>
+
+                        <!-- Instagram -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="https://www.instagram.com/vander_gs/"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-instagram"></i
+                            ></a>
+
+                        <!-- Linkedin -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="#!"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-linkedin"></i
+                            ></a>
+                        <!-- Github -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="https://github.com/israelgm29"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-github"></i
+                            ></a>
+
+                    </footer>
+                </div>
+                <div class="col-12 col-sm-5">
+                    <div class="container">
+
+                        <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a
+                                    class="nav-link active"
+                                    id="home-tab0"
+                                    data-mdb-toggle="tab"
+                                    data-mdb-target="#home0"
+
+                                    role="tab"
+                                    aria-controls="home"
+                                    aria-selected="true"
+                                    >
+                                    Login
+                                </a>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <a
+                                    class="nav-link"
+                                    id="contact-tab0"
+                                    data-mdb-toggle="tab"
+                                    data-mdb-target="#contact0"
+
+                                    role="tab"
+                                    aria-controls="contact"
+                                    aria-selected="false"
+                                    >
+                                    Registrarse
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent0">
+                            <div
+                                class="tab-pane fade show active"
+                                id="home0"
+                                role="tabpanel"
+                                aria-labelledby="home-tab0"
+                                >
+                                <h:form class="text-center">
+
+                                    <h:graphicImage height="300" width="300" value="#{resource['img/user.svg']}"/>
+                                    <div class="form-outline m-3">
+                                        <div class="form-outline">
+                                            <h:inputText class="form-control" id="email" value="#{usuarioController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
+                                            <h:outputLabel class="form-label" for="email">
+                                                <i class="fas fa-at"></i> Correo electronico
+                                            </h:outputLabel>
+                                        </div>
+                                    </div>
+                                    <div class="form-outline m-3">
+                                        <div class="form-outline">
+                                            <h:inputSecret class="form-control" id="password" value="#{usuarioController.selected.password}" title="#{bundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_password}"/>
+                                            <h:outputLabel class="form-label" for="password">
+                                                <i class="fas fa-key"></i> Password
+                                            </h:outputLabel>
+                                        </div>
+                                    </div>
+                                    <a href="#">¿Olvidaste tu contraseña?</a>
+                                    <input type="submit" class="btn btn-block btn-primary" value="Iniciar Sesion"/>
+                                </h:form>
+                            </div>
+
+                            <div class="tab-pane fade" id="contact0" role="tabpanel" aria-labelledby="contact-tab0">
+                                <h:form class="text-center">
+
+                                    <h:graphicImage height="250" width="300" value="#{resource['img/register.svg']}"/>
+                                    <form>
+                                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <input type="text" id="form3Example1" class="form-control" />
+                                                    <label class="form-label" for="form3Example1">First name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <input type="text" id="form3Example2" class="form-control" />
+                                                    <label class="form-label" for="form3Example2">Last name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Email input -->
+                                        <div class="form-outline mb-4">
+                                            <input type="email" id="form3Example3" class="form-control" />
+                                            <label class="form-label" for="form3Example3">Email address</label>
+                                        </div>
+
+                                        <!-- Password input -->
+                                        <div class="form-outline mb-4">
+                                            <input type="password" id="form3Example4" class="form-control" />
+                                            <label class="form-label" for="form3Example4">Password</label>
+                                        </div>
+
+                                        <!-- Submit button -->
+                                        <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+
+                                    </form>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <h:outputScript library="js" name="mdb.min.js"/>
+    </h:body>
+</html>
+
