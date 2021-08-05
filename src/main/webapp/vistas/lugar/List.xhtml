@@ -17,62 +17,137 @@
             <h:outputText escape="false" value="#{bundle.ListLugarEmpty}" rendered="#{lugarController.items.rowCount == 0}"/>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#"><i class="fas fa-map-marked-alt"></i> </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        >
+                        <i class="fas fa-bars"></i>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
-                        
+
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                           
+
                             <li class="nav-item">
                                 <h:form>
-                                <h:commandLink class="nav-link active"  action="#{lugarController.prepareCreate}">
-                                   <i class="fas fa-map-marked-alt"></i>  #{bundle.ListLugarCreateLink}
-                                </h:commandLink>
+                                    <h:commandLink class="nav-link active btn btn-default btn-sm"  action="#{lugarController.prepareCreate}">
+                                        <i class="fas fa-map-marked-alt"></i>  #{bundle.ListLugarCreateLink}
+                                    </h:commandLink>
                                 </h:form>
                             </li>
-                            <li class="nav-item">
-                                
-                                <h:link  class="nav-link active" outcome="/index">
-                                    <i class="fas fa-home"></i> #{bundle.ListLugarIndexLink}
-                                </h:link>
-                            </li>
-                            
+
                         </ul>
-                        
+
                         <div class="d-flex">
                             <input type="search" class="card-filter form-control" placeholder="Buscar..." autocomplete="off"/>
-                                
+
                         </div>
                     </div>
                 </div>
             </nav>
             <h:form prependId="false">
-                <div class="album py-1 bg-light mt-2">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <ui:repeat id="lugares" value="#{lugarController.items}" var="item" rendered="#{searchLugarController.b}">
 
-                            <div class="card shadow-sm me-3" style="width: 27rem;">
-                                <div class="card-body">
-                                    <h6 class="card-title fw-bold">#{item.nombre}</h6>
-                                    <h:graphicImage class="card-img-top" width="382px" height="188px" value="#{item.imagen}"/>
-                                    <span class="badge rounded-pill bg-primary"> Categoria :#{item.categoria}</span>
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <h:commandLink class="btn btn-warning btn-sm" action="#{lugarController.prepareView}" value="#{bundle.ListLugarViewLink}"/>
-                                        <h:commandLink class="btn btn-success btn-sm" action="#{lugarController.prepareEdit}" value="#{bundle.ListLugarEditLink}"/>
-                                        <h:commandLink class="btn btn-danger btn-sm" action="#{lugarController.destroy}" value="#{bundle.ListLugarDestroyLink}"/>
-                                    </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <ui:repeat id="lugares" value="#{lugarController.items}" var="item" rendered="#{searchLugarController.b}">
+
+                        <div class="card shadow-sm me-3" style="width: 27rem;">
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold">#{item.nombre}</h6>
+                                <h:graphicImage class="card-img-top" width="382px" height="188px" value="#{item.imagen}"/>
+                                <span class="badge rounded-pill bg-primary"> Categoria: #{item.categoria}</span>
+                                <div class="d-flex justify-content-center pt-2">
+                                    <h:commandLink class="btn btn-default btn-sm" action="#{lugarController.prepareView}">
+                                        <i class="fas fa-bars"></i>  #{bundle.ListLugarViewLink} 
+                                    </h:commandLink>
+                                    <h:commandLink class="btn btn-default btn-sm" action="#{lugarController.prepareEdit}">
+                                        <i class="far fa-edit text-primary"></i>  #{bundle.ListLugarEditLink}
+                                    </h:commandLink>
+                                    <h:commandLink class="btn btn-default btn-sm" action="#{lugarController.destroy}">
+                                        <i class="far fa-trash-alt text-danger"></i>  #{bundle.ListLugarDestroyLink}
+                                    </h:commandLink>
                                 </div>
                             </div>
+                        </div>
 
-                        </ui:repeat>
+                    </ui:repeat>
 
-                    </div>
                 </div>
-               
             </h:form>
-            
+
+            <footer class="text-center text-white" style="background-color: #f1f1f1;">
+                <!-- Grid container -->
+                <div class="container pt-4">
+                    <!-- Section: Social media -->
+                    <section class="mb-4">
+                        <!-- Facebook -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="#!"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-facebook-f"></i
+                            ></a>
+
+                        <!-- Twitter -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="#!"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-twitter"></i
+                            ></a>
+
+                        <!-- Google -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="#!"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-google"></i
+                            ></a>
+
+                        <!-- Instagram -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="#!"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-instagram"></i
+                            ></a>
+
+                        <!-- Linkedin -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="#!"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-linkedin"></i
+                            ></a>
+                        <!-- Github -->
+                        <a
+                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            href="#!"
+                            role="button"
+                            data-mdb-ripple-color="dark"
+                            ><i class="fab fa-github"></i
+                            ></a>
+                    </section>
+                    <!-- Section: Social media -->
+                </div>
+                <!-- Grid container -->
+
+                <!-- Copyright -->
+                <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2020 Copyright:
+                    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                </div>
+                <!-- Copyright -->
+            </footer>
             <script>
                 var d = document;
                 function searchFilter() {
