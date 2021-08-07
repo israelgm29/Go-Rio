@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAdminrolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAdminrolLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{adminrolController.selected.id}" title="#{bundle.EditAdminrolTitle_id}" required="true" requiredMessage="#{bundle.EditAdminrolRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditAdminrolLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{adminrolController.selected.nombre}" title="#{bundle.EditAdminrolTitle_nombre}" required="true" requiredMessage="#{bundle.EditAdminrolRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditAdminrolLabel_apellido}" for="apellido" />
+                    <h:inputText id="apellido" value="#{adminrolController.selected.apellido}" title="#{bundle.EditAdminrolTitle_apellido}" required="true" requiredMessage="#{bundle.EditAdminrolRequiredMessage_apellido}"/>
+                    <h:outputLabel value="#{bundle.EditAdminrolLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{adminrolController.selected.email}" title="#{bundle.EditAdminrolTitle_email}" required="true" requiredMessage="#{bundle.EditAdminrolRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditAdminrolLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{adminrolController.selected.password}" title="#{bundle.EditAdminrolTitle_password}" />
+                </h:panelGrid>
+                <h:commandLink action="#{adminrolController.update}" value="#{bundle.EditAdminrolSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAdminrolViewLink}"/>
+                <br />
+                <h:commandLink action="#{adminrolController.prepareList}" value="#{bundle.EditAdminrolShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAdminrolIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
