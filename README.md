@@ -48,7 +48,7 @@ Para evitar conflictos de dependencia, simplemente en Netbeans utilizar la opcio
 ---
 Puedes ayudar a mejorar esta aplicacion, realizando cambios en la rama Develop .
 
-## Screen Shot
+## Screenshot
 ---
 Login
 <p align="center"><img src="https://github.com/israelgm29/WebAppTurismo/blob/9e8b68498dddb1816791f8614ebdc80572f9c56b/inicio.png"/></p> 
