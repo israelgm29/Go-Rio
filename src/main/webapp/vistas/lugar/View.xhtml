@@ -14,37 +14,85 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewLugarLabel_idLugar}"/>
-                    <h:outputText value="#{lugarController.selected.idLugar}" title="#{bundle.ViewLugarTitle_idLugar}"/>
-                    <h:outputText value="#{bundle.ViewLugarLabel_nombre}"/>
-                    <h:outputText value="#{lugarController.selected.nombre}" title="#{bundle.ViewLugarTitle_nombre}"/>
-                    <h:outputText value="#{bundle.ViewLugarLabel_descripcion}"/>
-                    <h:outputText value="#{lugarController.selected.descripcion}" title="#{bundle.ViewLugarTitle_descripcion}"/>
-                    <h:outputText value="#{bundle.ViewLugarLabel_puntox}"/>
-                    <h:outputText value="#{lugarController.selected.puntox}" title="#{bundle.ViewLugarTitle_puntox}"/>
-                    <h:outputText value="#{bundle.ViewLugarLabel_puntoy}"/>
-                    <h:outputText value="#{lugarController.selected.puntoy}" title="#{bundle.ViewLugarTitle_puntoy}"/>
-                    <h:outputText value="#{bundle.ViewLugarLabel_imagen}"/>
-                    <h:outputText value="#{lugarController.selected.imagen}" title="#{bundle.ViewLugarTitle_imagen}"/>
-                    <h:outputText value="#{bundle.ViewLugarLabel_categoria}"/>
-                    <h:outputText value="#{lugarController.selected.categoria.nombre}" title="#{bundle.ViewLugarTitle_categoria1}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{lugarController.destroyAndView}" value="#{bundle.ViewLugarDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewLugarEditLink}"/>
-                <br />
-                <h:commandLink action="#{lugarController.prepareCreate}" value="#{bundle.ViewLugarCreateLink}" />
-                <br />
-                <h:commandLink action="#{lugarController.prepareList}" value="#{bundle.ViewLugarShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewLugarIndexLink}"/>
+                <section class="light">
+                    <div class="container py-2">
+
+                        <article class="postcard dark blue">
+                            <a class="postcard__img_link" href="#">
+                                <h:graphicImage class="postcard__img" value="#{lugarController.selected.imagen}"/>
+                            </a>
+                            <div class="postcard__text">
+                                <h1 class="postcard__title blue"><a href="#"><h:outputText value="#{lugarController.selected.nombre}" title="#{bundle.ViewLugarTitle_nombre}"/></a></h1>
+                                <div class="postcard__subtitle small">
+                                  <i class="fas fa-tag mr-2"></i>#{lugarController.selected.categoria.nombre}
+                                </div>
+                                <div class="postcard__bar"></div>
+                                <div class="postcard__preview-txt">#{lugarController.selected.descripcion}</div>
+                                <ul class="postcard__tagbox">
+                                    
+                                    <div class="d-flex align-items-start">  
+                                        <h:link class="btn btn-danger" outcome="Edit" value="#{bundle.ViewLugarEditLink} ">
+                                            <i class="fas fa-edit fa-lg"></i>
+                                        </h:link>
+                                         <h:commandLink class="btn btn-danger ms-1" action="#{lugarController.destroyAndView}" value="#{bundle.ViewLugarDestroyLink} ">
+                                             <i class="far fa-trash-alt fa-lg"></i>
+                                        </h:commandLink>
+                                        <h:commandLink class="btn btn-danger ms-1" action="#{lugarController.prepareCreate}" value="#{bundle.ViewLugarCreateLink} ">
+                                              <i class="fas fa-camera-retro fa-lg"/>
+                                         </h:commandLink>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </article>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div id="mapid" style="height: 300px; width: 500px"/>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="postcard__text">
+                                    <h1 class="postcard__title blue"><a href="#">Coordenadas de Mapa</a></h1>
+
+
+                                    <ul class="list-group ">
+                                        <li class="list-group-item"><i class="fas fa-tag mr-2"></i> #{lugarController.selected.categoria.nombre}</li>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text"><i class="fas fa-street-view"></i>&nbsp; Longitud </span>
+                                            <input type="text" class="form-control" value="#{lugarController.selected.puntox}" readonly=''>
+
+                                            </input>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text"><i class="fas fa-street-view"></i>&nbsp; Latitud&nbsp;</span>
+                                            <input type="text" class="form-control" value="#{lugarController.selected.puntoy}" readonly=''>
+
+                                            </input>
+                                        </div>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
 
             </h:form>
+
+            <h:outputScript library="js" name="leaflet.js"/>
+            <script>
+                const tilesProvider = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+                let mymap = L.map('mapid').setView([#{lugarController.selected.puntox},#{lugarController.selected.puntoy}], 13);
+                L.tileLayer(tilesProvider, {maxZoom: 18}).addTo(mymap);
+
+
+                L.marker([#{lugarController.selected.puntox}, #{lugarController.selected.puntoy}]).addTo(mymap)
+                        .bindPopup('#{lugarController.selected.nombre}')
+                        .openPopup();
+            </script>
         </ui:define>
+
     </ui:composition>
 
 </html>
