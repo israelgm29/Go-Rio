@@ -13,7 +13,6 @@
         <h:outputScript library="js" name="all.js"/>
     </h:head>
     <h:body>
-
         <div class="container-fluid">
             <div class="row  bg-image" style="background: url('#{resource['img/bg2.svg']}') no-repeat">
 
@@ -127,39 +126,39 @@
                                 <h:form class="text-center">
 
                                     <h:graphicImage height="250" width="300" value="#{resource['img/register.svg']}"/>
-                                    <form>
+                                    
                                         <!-- 2 column grid layout with text inputs for the first and last names -->
                                         <div class="row mb-4">
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <input type="text" id="form3Example1" class="form-control" />
-                                                    <label class="form-label" for="form3Example1">First name</label>
+                                                    <h:inputText class="form-control" id="nombre" value="#{adminrolController.selected.nombre}" title="#{bundle.CreateAdminrolTitle_nombre}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_nombre}"/>
+                                                    <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_nombre}" for="nombre" />
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <input type="text" id="form3Example2" class="form-control" />
-                                                    <label class="form-label" for="form3Example2">Last name</label>
+                                                    <h:inputText  class="form-control" id="apellido" value="#{adminrolController.selected.apellido}" title="#{bundle.CreateAdminrolTitle_apellido}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_apellido}"/>
+                                                    <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_apellido}" for="apellido" />
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- Email input -->
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="form3Example3" class="form-control" />
-                                            <label class="form-label" for="form3Example3">Email address</label>
+                                            <h:inputText class="form-control" id="email" value="#{adminrolController.selected.email}" title="#{bundle.CreateAdminrolTitle_email}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_email}"/>
+                                            <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_email}" for="email" />
                                         </div>
 
                                         <!-- Password input -->
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example4" class="form-control" />
-                                            <label class="form-label" for="form3Example4">Password</label>
+                                            <h:inputSecret class="form-control" id="password" value="#{adminrolController.selected.password}" title="#{bundle.CreateAdminrolTitle_password}" />
+                                            <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_password}" for="password" />
                                         </div>
-
+                                        <h:messages errorStyle="color: red" infoStyle="color: green"/>
                                         <!-- Submit button -->
-                                        <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
-
-                                    </form>
+                                        
+                                        <h:commandLink class="btn btn-primary btn-block mb-4" action="#{adminrolController.create}" value="Registrarse" />
+                                        
                                 </h:form>
                             </div>
                         </div>
