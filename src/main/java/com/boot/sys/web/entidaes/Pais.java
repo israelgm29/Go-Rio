@@ -116,7 +116,7 @@ public class Pais implements Serializable {
 
     @Override
     public String toString() {
-        return "com.boot.sys.web.entidaes.Pais[ id=" + id + " ]";
+        return nombre;
     }
     
 }
