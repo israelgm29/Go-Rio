@@ -7,6 +7,7 @@
     <class>com.boot.sys.web.entidaes.Categoria</class>
     <class>com.boot.sys.web.entidaes.Pais</class>
     <class>com.boot.sys.web.entidaes.Lugar</class>
+    <class>com.boot.sys.web.entidaes.Adminrol</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dbturismo"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
