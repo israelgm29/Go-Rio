@@ -12,5 +12,6 @@ package com.boot.sys.web;
 public class Const {
     public static final String URL = "/opt/server/docs/";
     public static final String SEPARATOR = "/";
+    public static final String CATEGORY = "category";
     public static final String URLSERVER = "http://localhost:8080";
 }
