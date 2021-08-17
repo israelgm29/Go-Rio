@@ -191,6 +191,7 @@ public class AdminrolController implements Serializable {
     public Adminrol getAdminrol(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
+    
 
     @FacesConverter(forClass = Adminrol.class)
     public static class AdminrolControllerConverter implements Converter {
