@@ -28,5 +28,17 @@ public class AdminrolFacade extends AbstractFacade<Adminrol> {
     public AdminrolFacade() {
         super(Adminrol.class);
     }
-    
+
+    public Adminrol LoginUser(String email, String password) {
+        try {
+            Adminrol adminrol = (Adminrol) em.createNativeQuery("SELECT * FROM adminrol WHERE email = ? AND password = ? ;", Adminrol.class)
+                    .setParameter(1, email)
+                    .setParameter(2, password)
+                    .getSingleResult();
+            return adminrol;
+        } catch (Exception e) {
+        return null;
+        }       
+    }
+
 }
