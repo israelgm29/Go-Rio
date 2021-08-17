@@ -30,6 +30,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Adminrol.findByNombre", query = "SELECT a FROM Adminrol a WHERE a.nombre = :nombre"),
     @NamedQuery(name = "Adminrol.findByApellido", query = "SELECT a FROM Adminrol a WHERE a.apellido = :apellido"),
     @NamedQuery(name = "Adminrol.findByEmail", query = "SELECT a FROM Adminrol a WHERE a.email = :email"),
+    @NamedQuery(name = "Adminrol.findByEmailAndPassword", query = "SELECT a FROM Adminrol a WHERE a.email = :email AND a.password= :password"),
     @NamedQuery(name = "Adminrol.findByPassword", query = "SELECT a FROM Adminrol a WHERE a.password = :password")})
 public class Adminrol implements Serializable {
 
