@@ -32,17 +32,27 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre")})
 public class Categoria implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "nombre")
+    private String nombre;
+    @Size(max = 50)
+    @Column(name = "descripcion")
+    private String descripcion;
+    @Size(max = 100)
+    @Column(name = "imagen")
+    private String imagen;
+    @Size(max = 20)
+    @Column(name = "icono")
+    private String icono;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_categoria")
     private Integer idCategoria;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "nombre")
-    private String nombre;
   
 
     public Categoria() {
@@ -52,10 +62,15 @@ public class Categoria implements Serializable {
         this.idCategoria = idCategoria;
     }
 
-    public Categoria(Integer idCategoria, String nombre) {
-        this.idCategoria = idCategoria;
+    public Categoria(String nombre, String descripcion, String imagen, String icono, Integer idCategoria) {
         this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+        this.icono = icono;
+        this.idCategoria = idCategoria;
     }
+
+   
 
     public Integer getIdCategoria() {
         return idCategoria;
@@ -64,7 +79,7 @@ public class Categoria implements Serializable {
     public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -72,6 +87,31 @@ public class Categoria implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getIcono() {
+        return icono;
+    }
+
+    public void setIcono(String icono) {
+        this.icono = icono;
+    }
+
 
      @Override
     public int hashCode() {
@@ -97,5 +137,6 @@ public class Categoria implements Serializable {
     public String toString() {
         return nombre;
     }
+
     
 }
