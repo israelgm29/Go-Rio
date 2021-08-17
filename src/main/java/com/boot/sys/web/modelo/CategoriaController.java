@@ -1,11 +1,17 @@
 package com.boot.sys.web.modelo;
 
+import com.boot.sys.web.Const;
 import com.boot.sys.web.entidaes.Categoria;
 import com.boot.sys.web.modelo.util.JsfUtil;
 import com.boot.sys.web.modelo.util.PaginationHelper;
 import com.boot.sys.web.beans.CategoriaFacade;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -17,6 +23,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.Part;
+import org.apache.commons.io.FilenameUtils;
 
 @Named("categoriaController")
 @SessionScoped
@@ -28,6 +36,9 @@ public class CategoriaController implements Serializable {
     private com.boot.sys.web.beans.CategoriaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private String destination;
+    private String uploadlink;
+    private Part imagen;
 
     public CategoriaController() {
     }
@@ -190,6 +201,59 @@ public class CategoriaController implements Serializable {
 
     public Categoria getCategoria(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+
+    private boolean upload() {
+        try {
+            destination = Const.URL+Const.CATEGORY;
+            System.err.println(destination);
+            File folder = new File(destination);
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+            copyFile(getImagen().getName(), getImagen());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void copyFile(String filename, Part in) throws IOException {
+        String fileName = Paths.get(in.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+        String extension = FilenameUtils.getExtension(fileName);
+        System.err.println(extension);
+        File savedFile = new File(Const.URL+Const.CATEGORY+Const.SEPARATOR, "" + current.getNombre() + "." + extension + "");
+        uploadlink = "" + Const.URLSERVER +Const.SEPARATOR+ Const.CATEGORY+Const.SEPARATOR + current.getNombre() + "." + extension + "";
+
+        try (InputStream input = in.getInputStream()) {
+            Files.copy(input, savedFile.toPath());
+            current.setImagen(uploadlink);
+        } catch (IOException e) {
+            // Show faces message?
+        }
+    }
+
+    public void newImage() {
+        if (upload()) {
+            current.setImagen(uploadlink);
+            create();
+            destination = "";
+        }
+    }
+       public void updateImagen() {
+        if (upload()) {
+            current.setImagen(uploadlink);
+            update();
+            destination = "";
+        }
+    }
+
+    public Part getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Part imagen) {
+        this.imagen = imagen;
     }
 
     @FacesConverter(forClass = Categoria.class)
