@@ -6,9 +6,11 @@
 package com.boot.sys.web.beans;
 
 import com.boot.sys.web.entidaes.Adminrol;
+import java.util.Iterator;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -35,10 +37,36 @@ public class AdminrolFacade extends AbstractFacade<Adminrol> {
                     .setParameter(1, email)
                     .setParameter(2, password)
                     .getSingleResult();
+
             return adminrol;
         } catch (Exception e) {
-        return null;
-        }       
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public boolean UpdatePassword(String email, String oldpass, String newpass) {
+        boolean confirm = false;
+        System.out.println(email);
+        System.out.println(oldpass);
+        System.out.println(newpass);
+        try {
+            int q = em.createQuery("UPDATE Adminrol a SET a.password = :newpassword WHERE a.email = :email AND a.password = :password")
+                    .setParameter("newpassword", newpass)
+                    .setParameter("email", email)
+                    .setParameter("password", oldpass)
+                    .executeUpdate();
+            if (q != 0) {
+                confirm = true;
+                return confirm;
+            } else {
+                return confirm;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
     }
 
 }

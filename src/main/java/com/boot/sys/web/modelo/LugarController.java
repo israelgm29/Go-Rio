@@ -248,6 +248,10 @@ public class LugarController implements Serializable {
             destination = "";
         }
     }
+    
+      public int getItemsCount() {
+                    return getFacade().count();
+                }
 
 
     @FacesConverter(forClass = Lugar.class)

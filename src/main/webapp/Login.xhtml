@@ -1,15 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>GO RIO</title>
         <h:outputStylesheet library="css" name="mdb.min.css"/>
-
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/logo.ico']}"/>
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             />
+        
         <h:outputScript library="js" name="all.js"/>
     </h:head>
     <h:body>
@@ -98,12 +100,12 @@
                                 role="tabpanel"
                                 aria-labelledby="home-tab0"
                                 >
-                                <h:form class="text-center">
+                                <h:form prependId="false"  id="login" class="text-center">
 
                                     <h:graphicImage height="300" width="300" value="#{resource['img/user.svg']}"/>
                                     <div class="form-outline m-3">
                                         <div class="form-outline">
-                                            <h:inputText class="form-control" id="email" value="#{usuarioController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
+                                            <h:inputText class="form-control" id="email" value="#{loginController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
                                             <h:outputLabel class="form-label" for="email">
                                                 <i class="fas fa-at"></i> Correo electronico
                                             </h:outputLabel>
@@ -111,14 +113,16 @@
                                     </div>
                                     <div class="form-outline m-3">
                                         <div class="form-outline">
-                                            <h:inputSecret class="form-control" id="password" value="#{usuarioController.selected.password}" title="#{bundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_password}"/>
+                                            <h:inputSecret class="form-control" id="password" value="#{loginController.selected.password}" title="#{bundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_password}"/>
                                             <h:outputLabel class="form-label" for="password">
                                                 <i class="fas fa-key"></i> Password
                                             </h:outputLabel>
                                         </div>
                                     </div>
                                     <a href="#">¿Olvidaste tu contraseña?</a>
-                                    <input type="submit" class="btn btn-block btn-primary" value="Iniciar Sesion"/>
+                                    <h:commandButton type="submit" class="btn btn-block btn-primary" action="#{loginController.Login}" value="Iniciar Sesion">
+                                        <f:ajax execute="login"/>
+                                    </h:commandButton>
                                 </h:form>
                             </div>
 
@@ -126,39 +130,39 @@
                                 <h:form class="text-center">
 
                                     <h:graphicImage height="250" width="300" value="#{resource['img/register.svg']}"/>
-                                    
-                                        <!-- 2 column grid layout with text inputs for the first and last names -->
-                                        <div class="row mb-4">
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <h:inputText class="form-control" id="nombre" value="#{adminrolController.selected.nombre}" title="#{bundle.CreateAdminrolTitle_nombre}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_nombre}"/>
-                                                    <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_nombre}" for="nombre" />
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <h:inputText  class="form-control" id="apellido" value="#{adminrolController.selected.apellido}" title="#{bundle.CreateAdminrolTitle_apellido}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_apellido}"/>
-                                                    <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_apellido}" for="apellido" />
-                                                </div>
+
+                                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <h:inputText class="form-control" id="nombre" value="#{adminrolController.selected.nombre}" title="#{bundle.CreateAdminrolTitle_nombre}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_nombre}"/>
+                                                <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_nombre}" for="nombre" />
                                             </div>
                                         </div>
-
-                                        <!-- Email input -->
-                                        <div class="form-outline mb-4">
-                                            <h:inputText class="form-control" id="email" value="#{adminrolController.selected.email}" title="#{bundle.CreateAdminrolTitle_email}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_email}"/>
-                                            <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_email}" for="email" />
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <h:inputText  class="form-control" id="apellido" value="#{adminrolController.selected.apellido}" title="#{bundle.CreateAdminrolTitle_apellido}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_apellido}"/>
+                                                <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_apellido}" for="apellido" />
+                                            </div>
                                         </div>
+                                    </div>
 
-                                        <!-- Password input -->
-                                        <div class="form-outline mb-4">
-                                            <h:inputSecret class="form-control" id="password" value="#{adminrolController.selected.password}" title="#{bundle.CreateAdminrolTitle_password}" />
-                                            <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_password}" for="password" />
-                                        </div>
-                                        <h:messages errorStyle="color: red" infoStyle="color: green"/>
-                                        <!-- Submit button -->
-                                        
-                                        <h:commandLink class="btn btn-primary btn-block mb-4" action="#{adminrolController.create}" value="Registrarse" />
-                                        
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <h:inputText class="form-control" id="email" value="#{adminrolController.selected.email}" title="#{bundle.CreateAdminrolTitle_email}" required="true" requiredMessage="#{bundle.CreateAdminrolRequiredMessage_email}"/>
+                                        <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_email}" for="email" />
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div class="form-outline mb-4">
+                                        <h:inputSecret class="form-control" id="password" value="#{adminrolController.selected.password}" title="#{bundle.CreateAdminrolTitle_password}" />
+                                        <h:outputLabel class="form-label" value="#{bundle.CreateAdminrolLabel_password}" for="password" />
+                                    </div>
+                                    <h:messages errorStyle="color: red" infoStyle="color: green"/>
+                                    <!-- Submit button -->
+
+                                    <h:commandLink class="btn btn-primary btn-block mb-4" action="#{adminrolController.create}" value="Registrarse" />
+
                                 </h:form>
                             </div>
                         </div>
@@ -167,7 +171,10 @@
 
             </div>
         </div>
+
         <h:outputScript library="js" name="mdb.min.js"/>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     </h:body>
 </html>
 

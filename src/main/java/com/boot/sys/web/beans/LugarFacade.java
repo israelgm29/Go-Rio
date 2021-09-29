@@ -15,6 +15,7 @@ import javax.faces.model.ResultDataModel;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import sun.util.logging.resources.logging;
 
 /**
  *
@@ -44,5 +45,13 @@ public class LugarFacade extends AbstractFacade<Lugar> {
 
     }
 
- 
+   
+    
+    public List allPlacesSta(){
+        Query q = em.createNativeQuery("SELECT COUNT (categoria) FROM lugar GROUP BY categoria ORDER BY categoria");
+         List count = q.getResultList();
+        System.out.println(count);
+        return count;
+    
+    }
 }

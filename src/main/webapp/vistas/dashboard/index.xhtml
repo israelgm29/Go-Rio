@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Dashboard"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <!-- Navbar -->
+            <div class="container">
+                
+                <div class="row">
+                    
+                    <div class="col-12 col-md-8">
+                        <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active"
+      id="home-tab0"
+      data-mdb-toggle="tab"
+      data-mdb-target="#home0"
+      type="button"
+      role="tab"
+      aria-controls="home"
+      aria-selected="true"
+    >
+      Estadistica 
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="profile-tab0"
+      data-mdb-toggle="tab"
+      data-mdb-target="#profile0"
+      type="button"
+      role="tab"
+      aria-controls="profile"
+      aria-selected="false"
+    >
+      Reportes
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="contact-tab0"
+      data-mdb-toggle="tab"
+      data-mdb-target="#contact0"
+      type="button"
+      role="tab"
+      aria-controls="contact"
+      aria-selected="false"
+    >
+      Contact
+    </button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent0">
+  <div
+    class="tab-pane fade show active"
+    id="home0"
+    role="tabpanel"
+    aria-labelledby="home-tab0"
+  >
+    <canvas id="myChart"></canvas>
+  </div>
+  <div class="tab-pane fade" id="profile0" role="tabpanel" aria-labelledby="profile-tab0">
+    Tab 2 content
+  </div>
+  <div class="tab-pane fade" id="contact0" role="tabpanel" aria-labelledby="contact-tab0">
+    Tab 3 content
+  </div>
+</div>
+                       
+                    </div>
+
+                    <div class="col-12 col-md-4 d-flex flex-column mb-2">
+
+                        <div class="col">
+                            <div class="card bg-c-blue order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Sitios Turisticos</h6>
+                                    <h2 class="text-right"><i class="fa fa-camera-retro f-left me-3"></i><span>#{lugarController.itemsCount}</span></h2>
+                                    <p class="m-b-0">Total de sitios registrados : <span class="f-right">#{lugarController.itemsCount}</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card bg-c-green order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Categorias</h6>
+                                    <h2 class="text-right"><i class="fa fa-rocket f-left me-3"></i><span>#{categoriaController.itemsCount}</span></h2>
+                                    <p class="m-b-0">Categorias Disponibles <span class="f-right">#{categoriaController.itemsCount}</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card bg-c-yellow order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Paises</h6>
+                                    <h2 class="text-right"><i class="fa fa-globe-americas f-left me-3"></i><span>#{paisController.itemsCount}</span></h2>
+                                    <p class="m-b-0">Total de Paises Registrados <span class="f-right">#{paisController.itemsCount}</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card bg-c-pink order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Usuarios</h6>
+                                    <h2 class="text-right"><i class="fa fa-user-astronaut f-left me-3"></i><span>#{usuarioController.itemsCount}</span></h2>
+                                    <p class="m-b-0">Total de Usuarios Registrados <span class="f-right">#{usuarioController.itemsCount}</span></p>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+            </div>
+
+
+            <br />
+            <h:link outcome="/vistas/adminrol/List" value="Show All Adminrol Items"/>
+            <h:outputScript library="js" name="chart.js"/>
+            <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var categorias = #{estadisticaController.allCategories()}
+                var lugares = #{estadisticaController.allPlaces()}
+                var delayed;
+                console.log(lugares);
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [] = categorias,
+                        datasets: [{
+                                label: 'N° de Sitios Turisticos ',
+                                data: [] = lugares,
+                                backgroundColor: [
+                                    'rgb(234, 144, 122)',
+                                    'rgb(251, 198, 135)',
+                                    'rgb(255, 184, 48)',
+                                    'rgb(18, 93, 152)',
+                                    'rgb(60, 141, 173)',
+                                    'rgb(61, 178, 255)',
+                                    'rgb(170, 205, 190)'
+                                ],
+                              
+                                borderWidth: 1
+                            }]
+                    },
+                    options: {
+                        responsive: true,
+                         indexAxis: 'y',
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Estadistica de Sitios Turisticos por categoria'
+                            }
+                        },
+                        animation: {
+                            onComplete: () => {
+                                delayed = true;
+                            },
+                            delay: (context) => {
+                                let delay = 0;
+                                if (context.type === 'data' &amp;&amp; context.mode === 'default' &amp;&amp; !delayed) {
+                                    delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                                }
+                                return delay;
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    },
+                });
+            </script>
+
+            <h:outputScript library="js" name="mdb.min.js"/>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+

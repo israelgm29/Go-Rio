@@ -21,6 +21,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
+                    <div class="container">
                     <h4>Datos del Lugar</h4>
                     <h:form class="row g-3" prependId="false" enctype="multipart/form-data" >
 
@@ -29,7 +30,7 @@
                             <h:outputLabel class="form-label" value="#{bundle.CreateLugarLabel_nombre}" for="nombre" />
                         </div>
                         <div class="form-outline">
-                            <h:inputTextarea class="form-control form-control-sm" id="descripcion" value="#{lugarController.selected.descripcion}" title="#{bundle.CreateLugarTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_descripcion}"/>
+                            <h:inputTextarea class="form-control form-control-sm" id="descripcion" value="#{lugarController.selected.descripcion}" title="#{bundle.CreateLugarTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_descripcion}" rows="10"/>
                             <h:outputLabel class="form-label" value="#{bundle.CreateLugarLabel_descripcion}" for="descripcion" />
                         </div>
                         <div class="form-outline">       
@@ -66,6 +67,7 @@
                         </div>
 
                     </h:form>
+                    </div>
                 </div>
             </div>
             <h:outputScript library="js" name="leaflet.js"/>

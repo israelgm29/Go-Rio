@@ -6,9 +6,11 @@
 package com.boot.sys.web.beans;
 
 import com.boot.sys.web.entidaes.Categoria;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,11 @@ public class CategoriaFacade extends AbstractFacade<Categoria> {
 
     public CategoriaFacade() {
         super(Categoria.class);
+    }
+    public  List getAllNameCategories(){
+    
+       Query q = em.createNativeQuery("SELECT nombre FROM public.categoria ORDER BY id_categoria;");
+        return  q.getResultList();
     }
     
 }

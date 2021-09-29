@@ -13,24 +13,35 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreatePaisLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{paisController.selected.id}" title="#{bundle.CreatePaisTitle_id}" required="true" requiredMessage="#{bundle.CreatePaisRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreatePaisLabel_iso}" for="iso" />
-                    <h:inputText id="iso" value="#{paisController.selected.iso}" title="#{bundle.CreatePaisTitle_iso}" />
-                    <h:outputLabel value="#{bundle.CreatePaisLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{paisController.selected.nombre}" title="#{bundle.CreatePaisTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePaisRequiredMessage_nombre}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{paisController.create}" value="#{bundle.CreatePaisSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{paisController.prepareList}" value="#{bundle.CreatePaisShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreatePaisIndexLink}"/>
-            </h:form>
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-12 col-md-4">
+                    <h:form >
+                        <h2> Datos del Pais</h2>
+                        <h:panelGrid columns="2">
+                             <h:outputLabel value="#{bundle.CreatePaisLabel_iso}" for="iso" />
+                            <h:inputText class="form-control" id="iso" value="#{paisController.selected.iso}" title="#{bundle.CreatePaisTitle_iso}" />
+                            <h:outputLabel value="#{bundle.CreatePaisLabel_nombre}" for="nombre" />
+                            <h:inputText class="form-control" id="nombre" value="#{paisController.selected.nombre}" title="#{bundle.CreatePaisTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePaisRequiredMessage_nombre}"/>
+                        </h:panelGrid>
+                        <div class="d-flex align-items-start pt-3">  
+                            <h:commandLink class="btn btn-primary me-2" action="#{paisController.create}" value="#{bundle.CreatePaisSaveLink}" />
+                            <h:commandLink class="btn btn-default" action="#{paisController.prepareList}" value="#{bundle.CreatePaisShowAllLink}" immediate="true"/>
+
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col-12 col-md-8">
+                    <section>
+                        <h2 class="mb-4">Asignación de códigos (ISO)</h2>
+                    </section>
+                    <p class="note note-info">Los códigos de los países que se encuentran en la norma ISO 3166-1 son utilizados por muchas organizaciones, empresas y gobiernos. Por ejemplo, todas las organizaciones postales nacionales en todo el mundo de intercambio de correo internacional 
+                        en contenedores que lleven su código de país para la identificación. En pasaportes de lectura mecánica, se utilizan los códigos del ISO 3166-1 para determinar la nacionalidad del<b>usuario</b>. 
+                        Además, los sistemas de nombres de dominio de Internet utilizan los códigos para definir los nombres de dominio de nivel superior geográfico, como <b>CU para Cuba</b>, <b>FR para Francia</b>, <b>IT para Italia</b>, <b>AU para Australia</b> y<b> BR para Brasil</b>.</p>
+                    <a href="https://es.wikipedia.org/wiki/ISO_3166-1" target="_blank" class="btn btn-primary stretched-link"><i class="fab fa-wikipedia-w"></i> Consultar codigos ISO</a>
+                </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

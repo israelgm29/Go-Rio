@@ -10,16 +10,49 @@
             <h:outputText value="#{bundle.ListPaisTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        >
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+                            <li class="nav-item">
+                                <h:form>
+                                    <h:commandLink class="btn btn-success"  action="#{paisController.prepareCreate}">
+                                        <i class="fas fa-globe-americas fa-lg me-2"/> #{bundle.ListPaisCreateLink}
+                                    </h:commandLink>
+                                </h:form>
+                            </li>
+
+                        </ul>
+
+                        <div class="d-flex">
+                            <input id="buscar" type="text" class="form-control" placeholder="Buscar país..." />
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <h:form styleClass="jsfcrud_list_form" prependId="false">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListPaisEmpty}" rendered="#{paisController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{paisController.items.rowCount > 0}">
-                    <h:outputText value="#{paisController.pagination.pageFirstItem + 1}..#{paisController.pagination.pageLastItem + 1}/#{paisController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{paisController.previous}" value="#{bundle.Previous} #{paisController.pagination.pageSize}" rendered="#{paisController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{paisController.next}" value="#{bundle.Next} #{paisController.pagination.pageSize}" rendered="#{paisController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable class="table table-hover" value="#{paisController.items}" var="item">
+
+                    <h:dataTable id="tabla" class="table table-striped" value="#{paisController.items}" var="item">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPaisTitle_id}"/>
@@ -32,7 +65,7 @@
                             </f:facet>
                             <h:outputText value="#{item.iso}"/>
                         </h:column>
-                        <h:column>
+                        <h:column> 
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPaisTitle_nombre}"/>
                             </f:facet>
@@ -40,7 +73,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
+                                <h:outputText value="Acciones"/>
                             </f:facet>
                             <h:commandLink class="btn btn-default btn-sm" action="#{paisController.prepareView}">
                                 <i class="fas fa-bars"/> #{bundle.ListPaisViewLink}
@@ -56,12 +89,9 @@
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{paisController.prepareCreate}" value="#{bundle.ListPaisCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListPaisIndexLink}"/>
             </h:form>
+
+            <h:outputScript library="js" name="newjavascript.js"></h:outputScript>
         </ui:define>
     </ui:composition>
 

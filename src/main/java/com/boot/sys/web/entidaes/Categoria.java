@@ -28,6 +28,7 @@ import javax.validation.constraints.Size;
 @Table(name = "categoria")
 @NamedQueries({
     @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
+    @NamedQuery(name = "Categoria.findAllByName", query = "SELECT c.nombre FROM Categoria c"),
     @NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria"),
     @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre")})
 public class Categoria implements Serializable {
@@ -37,7 +38,7 @@ public class Categoria implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "nombre")
     private String nombre;
-    @Size(max = 50)
+    @Size(max = 2147483647)
     @Column(name = "descripcion")
     private String descripcion;
     @Size(max = 100)

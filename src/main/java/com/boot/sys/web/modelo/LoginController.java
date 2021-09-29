@@ -13,6 +13,7 @@ import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -47,15 +48,16 @@ public class LoginController {
 
     public String Login() {
         FacesContext context = FacesContext.getCurrentInstance();
-
-        Adminrol adminrol = adminrolFacade.LoginUser(current.getEmail(), current.getPassword());
+        String passMD5 = DigestUtils.md5Hex(current.getPassword());
+        System.out.println(passMD5);
+        Adminrol adminrol = adminrolFacade.LoginUser(current.getEmail(), passMD5);
 
         if (adminrol != null) {
-            if (adminrol.getEmail().contains(current.getEmail()) && adminrol.getPassword().contains(current.getPassword())) {
+            if (adminrol.getEmail().contains(current.getEmail()) && adminrol.getPassword().contains(passMD5)) {
                 context.getExternalContext().getSessionMap().put("userlog", adminrol);
                 HttpSession session = SessionUtils.getSession();
                 session.setAttribute("username", adminrol.getNombre());
-                return "index";
+                return "faces/vistas/dashboard/index.xhtml?faces-redirect=true";
             }
         } else {
             context.getPartialViewContext().getEvalScripts().add("Swal.fire({\n"
@@ -65,6 +67,11 @@ public class LoginController {
                     + "}) ");
             return null;
         }
+          context.getPartialViewContext().getEvalScripts().add("Swal.fire({\n"
+                    + "  icon: 'error',\n"
+                    + "  title: 'Oops...',\n"
+                    + "  text: '!algo salio mal¡',\n"
+                    + "}) ");
         return null;
     }
     

@@ -15,23 +15,18 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditPaisLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{paisController.selected.id}" title="#{bundle.EditPaisTitle_id}" required="true" requiredMessage="#{bundle.EditPaisRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditPaisLabel_iso}" for="iso" />
-                    <h:inputText id="iso" value="#{paisController.selected.iso}" title="#{bundle.EditPaisTitle_iso}" />
+                     <h:outputLabel value="#{bundle.EditPaisLabel_iso}" for="iso" />
+                    <h:inputText class="form-control" id="iso" value="#{paisController.selected.iso}" title="#{bundle.EditPaisTitle_iso}" />
                     <h:outputLabel value="#{bundle.EditPaisLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{paisController.selected.nombre}" title="#{bundle.EditPaisTitle_nombre}" required="true" requiredMessage="#{bundle.EditPaisRequiredMessage_nombre}"/>
+                    <h:inputText class="form-control" id="nombre" value="#{paisController.selected.nombre}" title="#{bundle.EditPaisTitle_nombre}" required="true" requiredMessage="#{bundle.EditPaisRequiredMessage_nombre}"/>
                 </h:panelGrid>
-                <h:commandLink action="#{paisController.update}" value="#{bundle.EditPaisSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditPaisViewLink}"/>
-                <br />
-                <h:commandLink action="#{paisController.prepareList}" value="#{bundle.EditPaisShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditPaisIndexLink}" />
+                <div class="d-flex align-items-start pt-3">
+                    <h:commandLink class="btn btn-primary me-2" action="#{paisController.update}" value="#{bundle.EditPaisSaveLink}"/>
+                    <h:link class="btn btn-info me-2" outcome="View" value="#{bundle.EditPaisViewLink}"/>
+                    <h:commandLink class="btn btn-default" action="#{paisController.prepareList}" value="#{bundle.EditPaisShowAllLink}" immediate="true"/>
+                </div>
             </h:form>
+            
         </ui:define>
     </ui:composition>
 

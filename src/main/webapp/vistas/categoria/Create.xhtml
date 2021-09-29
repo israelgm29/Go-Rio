@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -13,21 +14,66 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateCategoriaLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.CreateCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_nombre}"/>
-                    
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{categoriaController.create}" value="#{bundle.CreateCategoriaSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{categoriaController.prepareList}" value="#{bundle.CreateCategoriaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateCategoriaIndexLink}"/>
-            </h:form>
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <h:form class="row g-0" enctype="multipart/form-data">
+
+                        <h:outputLabel  value="#{bundle.CreateCategoriaLabel_nombre}" for="nombre" />
+                        <h:inputText class="form-control" id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.CreateCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_nombre}"/>
+                        <h:outputLabel  value="#{bundle.CreateCategoriaLabel_descripcion}" for="descripcion" />
+                        <h:inputText class="form-control" id="descripcion" value="#{categoriaController.selected.descripcion}" title="#{bundle.CreateCategoriaTitle_descripcion}" />
+                        <h:outputLabel  value="#{bundle.CreateCategoriaLabel_imagen}" for="imagen" />
+                        <div class="form-outline">
+                            <i class="fas fa-exclamation-circle trailing"></i>
+                            <h:inputFile  class="form-control form-control-sm" id="file-id"  value="#{categoriaController.imagen}" required="true"   
+                                          requiredMessage="Please upload a file" alt="upload file">
+                            </h:inputFile> 
+                        </div>
+                        <h:outputLabel  value="#{bundle.CreateCategoriaLabel_icono}" for="icono" />
+                        <h:inputText class="form-control" id="icono" a:placeholder="apps-outline" value="#{categoriaController.selected.icono}" title="#{bundle.CreateCategoriaTitle_icono}" />
+
+
+                        <div class="d-flex align-items-start pt-3">
+
+                            <h:commandLink class="btn btn-primary me-2" action="#{categoriaController.newImage()}" value="#{bundle.CreateCategoriaSaveLink}" />
+
+                            <h:commandLink class="btn btn-default" action="#{categoriaController.prepareList}" value="#{bundle.CreateCategoriaShowAllLink}" immediate="true"/>
+                        </div>
+                    </h:form>
+                </div>
+
+                <div class="col-12 col-md-6">
+
+                    <div class="note note-info">
+                        <i class="fas fa-exclamation-triangle fa-lg text-warning"></i> | Para seleccionar un icono de categoria, busque y seleccione
+                        el icono acorde a la tematica, este icono es importante ya que es el que se mostrara en la aplicacion movil.<br/>
+                        Para seleccionar el icono, solo debe copiar el nombre del icono por ejemplo:<br/>
+                        <h:graphicImage class="img-fluid" value="#{resource['img/example_icon.png']}"/>
+                        <br/>
+                        <br/>
+                         <div class="ratio ratio-16x9">
+                        <iframe
+                            src="https://ionic.io/ionicons"
+                            title="YouTube video"
+                            allowfullscreen=""
+                            ></iframe>
+                    </div>
+                    </div>
+                   
+                </div>
+                <div class="col-12 col-md-3">
+                    <div style="position: relative">
+                        <h:graphicImage style="position:absolute;  z-index: -1;" width="300" height="500" value="#{resource['img/iphone-device-skin.png']}"/>
+
+                        <div style="position: absolute; left: 0px">
+                            <h:graphicImage class="rounded-3" style="z-index: 1;  position:absolute; top: 25px; left: 14px" width="270" height="450" value="#{resource['img/screen-phone.png']}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         </ui:define>
     </ui:composition>
 

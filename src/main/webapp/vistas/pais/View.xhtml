@@ -22,19 +22,13 @@
                     <h:outputText value="#{bundle.ViewPaisLabel_nombre}"/>
                     <h:outputText value="#{paisController.selected.nombre}" title="#{bundle.ViewPaisTitle_nombre}"/>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{paisController.destroyAndView}" value="#{bundle.ViewPaisDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPaisEditLink}"/>
-                <br />
-                <h:commandLink action="#{paisController.prepareCreate}" value="#{bundle.ViewPaisCreateLink}" />
-                <br />
-                <h:commandLink action="#{paisController.prepareList}" value="#{bundle.ViewPaisShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewPaisIndexLink}"/>
+                <div class="d-flex align-items-start pt-3"> 
+                    <h:commandLink class="btn btn-danger " action="#{paisController.destroyAndView}" value="#{bundle.ViewPaisDestroyLink}"/>
+                    <h:link class="btn btn-info ms-2" outcome="Edit" value="#{bundle.ViewPaisEditLink}"/>
+                    <h:commandLink class="btn btn-primary ms-2" action="#{paisController.prepareCreate}" value="#{bundle.ViewPaisCreateLink}" />
+                    <h:commandLink class="btn btn-default ms-2" action="#{paisController.prepareList}" value="#{bundle.ViewPaisShowAllLink}"/>
 
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -46,7 +46,7 @@ public class PaisController implements Serializable {
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
-            pagination = new PaginationHelper(10) {
+            pagination = new PaginationHelper(100000) {
 
                 @Override
                 public int getItemsCount() {
@@ -191,6 +191,10 @@ public class PaisController implements Serializable {
     public Pais getPais(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
+
+    public int getItemsCount() {
+                    return getFacade().count();
+                }
 
     @FacesConverter(forClass = Pais.class)
     public static class PaisControllerConverter implements Converter {

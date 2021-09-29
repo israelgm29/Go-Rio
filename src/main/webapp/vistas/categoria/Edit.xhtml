@@ -13,24 +13,44 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                  
-                    <h:outputLabel value="#{bundle.EditCategoriaLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.EditCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_nombre}"/>
-                   
-                  
-                </h:panelGrid>
-                <h:commandLink action="#{categoriaController.update}" value="#{bundle.EditCategoriaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditCategoriaViewLink}"/>
-                <br />
-                <h:commandLink action="#{categoriaController.prepareList}" value="#{bundle.EditCategoriaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditCategoriaIndexLink}" />
+            <div class="row">
+                <div class="col-12 col-md-4">
+            <h:form enctype="multipart/form-data">
+                <h:outputLabel value="#{bundle.EditCategoriaLabel_nombre}" for="nombre" />
+                <h:inputText class="form-control" id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.EditCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_nombre}"/>
+                <h:outputLabel value="#{bundle.EditCategoriaLabel_descripcion}" for="descripcion" />
+                <h:inputText class="form-control" id="descripcion" value="#{categoriaController.selected.descripcion}" title="#{bundle.EditCategoriaTitle_descripcion}" />
+                <h:outputLabel value="#{bundle.EditCategoriaLabel_imagen}" for="imagen" />
+                <div class="form-outline">
+                    <i class="fas fa-exclamation-circle trailing"></i>
+                    <h:inputFile  class="form-control form-control-sm" id="file-id"  value="#{categoriaController.imagen}"   
+                                   alt="upload file">
+                    </h:inputFile> 
+                </div>
+                <h:outputLabel value="#{bundle.EditCategoriaLabel_icono}" for="icono" />
+                <h:inputText class="form-control" id="icono" value="#{categoriaController.selected.icono}" title="#{bundle.EditCategoriaTitle_icono}" />
+
+                <div class="d-flex align-items-start pt-3">
+                    <h:commandLink class="btn btn-primary me-2" action="#{categoriaController.updateImagen()}" value="#{bundle.EditCategoriaSaveLink}"/>
+                    <br />
+                    <br />
+                    <h:link class="btn btn-info me-2" outcome="View" value="#{bundle.EditCategoriaViewLink}"/>
+                    <br />
+                    <h:commandLink class="btn btn-default me-2" action="#{categoriaController.prepareList}" value="#{bundle.EditCategoriaShowAllLink}" immediate="true"/>
+
+                </div>
             </h:form>
+                </div>
+                <div class="col-12 col-md-8">
+                     <div class="ratio ratio-16x9">
+                     <iframe
+                            src="https://ionic.io/ionicons"
+                            title="YouTube video"
+                            allowfullscreen=""
+                            ></iframe> 
+                     </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

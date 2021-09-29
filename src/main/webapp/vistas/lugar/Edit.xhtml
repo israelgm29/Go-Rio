@@ -13,33 +13,91 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <h:form prependId="false" enctype="multipart/form-data">
                 <h:panelGrid columns="2">
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_nombre}" for="nombre" />
-                            <h:inputText class="form-control form-control-sm" id="nombre" value="#{lugarController.selected.nombre}" title="#{bundle.CreateLugarTitle_nombre}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_nombre}"/>
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_descripcion}" for="descripcion" />
-                            <h:inputTextarea class="form-control form-control-sm" id="descripcion" value="#{lugarController.selected.descripcion}" title="#{bundle.CreateLugarTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_descripcion}"/>
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_puntox}" for="puntox" />
-                            <h:inputText class="form-control form-control-sm" id="puntox" value="#{lugarController.selected.puntox}" title="#{bundle.CreateLugarTitle_puntox}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntox}"/>
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_puntoy}" for="puntoy" />
-                            <h:inputText class="form-control form-control-sm" id="puntoy" value="#{lugarController.selected.puntoy}" title="#{bundle.CreateLugarTitle_puntoy}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntoy}"/>
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_imagen}" for="imagen" />
-                            <h:inputFile  id="file-id"  value="#{lugarController.imagen}" alt="upload file"></h:inputFile> 
-                            <h:outputLabel value="#{bundle.CreateLugarLabel_categoria}" for="categoria" />
-                            <h:selectOneMenu class="form-select form-select-sm" id="categoria1" value="#{lugarController.selected.categoria}" title="#{bundle.CreateLugarTitle_categoria1}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_categoria1}">
-                                <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
-                            </h:selectOneMenu>
-                        </h:panelGrid>
-                <h:commandLink action="#{lugarController.update}" value="#{bundle.EditLugarSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditLugarViewLink}"/>
-                <br />
-                <h:commandLink action="#{lugarController.prepareList}" value="#{bundle.EditLugarShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditLugarIndexLink}" />
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_nombre}" for="nombre" />
+                    <h:inputText class="form-control form-control-sm" id="nombre" value="#{lugarController.selected.nombre}" title="#{bundle.CreateLugarTitle_nombre}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_descripcion}" for="descripcion" />
+                    <h:inputTextarea class="form-control form-control-sm" rows="16" id="descripcion" value="#{lugarController.selected.descripcion}" title="#{bundle.CreateLugarTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_puntox}" for="puntox" />
+                    <h:inputText class="form-control form-control-sm" id="puntox" value="#{lugarController.selected.puntox}" title="#{bundle.CreateLugarTitle_puntox}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntox}"/>
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_puntoy}" for="puntoy" />
+                    <h:inputText class="form-control form-control-sm" id="puntoy" value="#{lugarController.selected.puntoy}" title="#{bundle.CreateLugarTitle_puntoy}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntoy}"/>
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_imagen}" for="imagen" />
+                    <h:inputFile  id="file-id"  value="#{lugarController.imagen}" alt="upload file"></h:inputFile> 
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_categoria}" for="categoria" />
+                    <h:selectOneMenu class="form-select form-select-sm" id="categoria1" value="#{lugarController.selected.categoria}" title="#{bundle.CreateLugarTitle_categoria1}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_categoria1}">
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <div class="d-flex align-items-start pt-3">
+                    <h:commandLink class="btn btn-primary me-2" action="#{lugarController.update}" value="#{bundle.EditLugarSaveLink}"/>
+
+                    <h:link class="btn btn-info me-2" outcome="View" value="#{bundle.EditLugarViewLink}"/>
+                    <br />
+                    <h:commandLink class="btn btn-danger me-2" action="#{lugarController.prepareList}" value="#{bundle.EditLugarShowAllLink}" immediate="true"/>
+
+                </div>
             </h:form>
+                </div>
+                <div class="col-12 col-md-8">
+                      <div id="mapid" style="height: 480px"/>
+                </div>
+            </div>
+             <h:outputScript library="js" name="leaflet.js"/>
+            <h:outputScript library="js" name="Control.Geocoder.js"/>
+            <script>
+                const tilesProvider = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+                let mymap = L.map('mapid').setView([-1.730298, -78.6164476], 13);
+                L.tileLayer(tilesProvider, {maxZoom: 18}).addTo(mymap);
+                var greenIcon = L.icon({
+                    iconUrl: '#{resource['img/mark.png']}',
+                    iconSize: [38, 38], // size of the icon
+                    iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
+                    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+                });
+                var marker;
+                mymap.on('click', function (e) {
+                    if (marker) { // check
+                        mymap.removeLayer(marker); // remove
+                    }
+                    marker = new L.Marker([e.latlng.lat, e.latlng.lng], {icon: greenIcon}).addTo(mymap); // set
+                    marker.bindPopup("<strong>" + e.latlng + "</strong>").addTo(mymap);
+                    var lat = e.latlng.lat;
+                    var lon = e.latlng.lng;
+                    document.getElementById("puntox").value = lat;
+                    document.getElementById("puntoy").value = lon;
+                    console.log(lat);
+                });
+
+
+                L.Control.Watermark = L.Control.extend({
+                    onAdd: function (map) {
+                        var img = L.DomUtil.create('img');
+
+                        img.src = '#{resource['img/Rio.png']}';
+                        img.style.width = '100px';
+
+                        return img;
+                    },
+
+                    onRemove: function (map) {
+                        // Nothing to do here
+                    }
+                });
+
+                L.control.watermark = function (opts) {
+                    return new L.Control.Watermark(opts);
+                }
+
+                L.control.watermark({position: 'bottomleft'}).addTo(mymap);
+                L.Control.geocoder({
+                    geocoder: L.Control.Geocoder.nominatim()
+                }).addTo(mymap);
+
+            </script>
         </ui:define>
     </ui:composition>
 

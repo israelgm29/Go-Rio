@@ -2,15 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title><ui:insert name="title">Go Rio</ui:insert></title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/logo.ico']}"/>
         <h:outputStylesheet library="css" name="mdb.min.css"/>
         <h:outputStylesheet library="css" name="detailPlace.css"/>
         <h:outputStylesheet library="css" name="Control.Geocoder.css"/>
+        <h:outputStylesheet library="css" name="footable.standalone.css"/>
+        <h:outputStylesheet library="css" name="jquery.dataTables.min.css"/>
         <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
         <h:outputScript library="js" name="all.js"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
@@ -43,15 +47,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Navbar brand -->
                     <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                        
+
                         <h:graphicImage height="60" value="#{resource['img/logo.png']}"/>
-                        
+
                     </a>
-                    
+
                     <!-- Left links -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <h:link  class="nav-link active" outcome="/index">
+                            <h:link  class="nav-link active" outcome="/vistas/dashboard/index">
                                 <i class="fas fa-home"/> #{bundle.ListLugarIndexLink}
                             </h:link>
                         </li>
@@ -72,7 +76,7 @@
                         </li>
                         <li class="nav-item">
                             <h:link class="nav-link active"  outcome="/vistas/usuario/List">
-                            <i class="fas fa-user-astronaut"></i> Usuarios
+                                <i class="fas fa-user-astronaut"></i> Usuarios
                             </h:link>
                         </li>
                     </ul>
@@ -130,13 +134,19 @@
                         aria-labelledby="navbarDropdownMenuLink"
                         >
                         <li>
-                            <a class="dropdown-item" href="#">Mi Perfil</a>
+
+                            <p class="dropdown-item"> #{userlog.nombre} #{userlog.apellido}</p>
+                        </li>
+                        <li>
+                            <h:link class="dropdown-item" outcome="/vistas/userProfile/View">Mi Perfil</h:link>
                         </li>
                         <li>
                             <a class="dropdown-item" href="#">Configuraciones</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <h:form>
+                                <h:commandLink class="dropdown-item" action="#{loginController.logout()}">Cerrar Sesión</h:commandLink>
+                            </h:form>
                         </li>
                     </ul>
                 </div>
@@ -154,6 +164,7 @@
             </p>
         </div>
         <h:outputScript library="js" name="mdb.min.js"/>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </h:body>
 
 </html>

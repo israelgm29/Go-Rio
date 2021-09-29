@@ -11,15 +11,13 @@
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
+                <h:commandLink class="btn btn-primary" action="#{categoriaController.prepareCreate}" value="#{bundle.ListCategoriaCreateLink}"/>
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListCategoriaEmpty}" rendered="#{categoriaController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{categoriaController.items.rowCount > 0}">
-                    <h:outputText value="#{categoriaController.pagination.pageFirstItem + 1}..#{categoriaController.pagination.pageLastItem + 1}/#{categoriaController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{categoriaController.previous}" value="#{bundle.Previous} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{categoriaController.next}" value="#{bundle.Next} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable class="table table-hover" value="#{categoriaController.items}" var="item">
+                      <h:dataTable class="table table-hover" style="font-size: 12px;" value="#{categoriaController.items}" var="item">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_idCategoria}"/>
@@ -34,27 +32,41 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="Descripción"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriaTitle_imagen}"/>
+                            </f:facet>
+                            <h:graphicImage class="img-thumbnail" width="50px" height="50px" value="#{item.imagen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriaTitle_icono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.icono}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="Acciones"/>
                             </f:facet>
-                            <h:commandLink class="btn btn-default btn-sm" action="#{categoriaController.prepareView}">
+                             <h:commandLink class="btn btn-default btn-sm" action="#{categoriaController.prepareView}">
                              <i class="fas fa-bars"/> #{bundle.ListCategoriaViewLink}
                             </h:commandLink>
-                                <h:outputText value=" "/>
+                            <h:outputText value=" "/>
                             <h:commandLink class="btn btn-default btn-sm" action="#{categoriaController.prepareEdit}">
                             <i class="far fa-edit text-primary"/> #{bundle.ListCategoriaEditLink}
                             </h:commandLink>
-                                <h:outputText value=" "/>
+                            <h:outputText value=" "/>
                             <h:commandLink class="btn btn-default btn-sm" action="#{categoriaController.destroy}">
-                                <i class="far fa-trash-alt text-danger"/> #{bundle.ListCategoriaDestroyLink} #{bundle.ListCategoriaDestroyLink}
+                                <i class="far fa-trash-alt text-danger"/> #{bundle.ListCategoriaDestroyLink} 
                             </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{categoriaController.prepareCreate}" value="#{bundle.ListCategoriaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListCategoriaIndexLink}"/>
+                             
             </h:form>
         </ui:define>
     </ui:composition>

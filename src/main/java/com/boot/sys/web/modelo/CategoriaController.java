@@ -255,6 +255,10 @@ public class CategoriaController implements Serializable {
     public void setImagen(Part imagen) {
         this.imagen = imagen;
     }
+    
+     public int getItemsCount() {
+                    return getFacade().count();
+                }
 
     @FacesConverter(forClass = Categoria.class)
     public static class CategoriaControllerConverter implements Converter {

@@ -17,6 +17,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.apache.commons.codec.digest.DigestUtils;
 
 @Named("adminrolController")
 @SessionScoped
@@ -192,7 +193,7 @@ public class AdminrolController implements Serializable {
         return ejbFacade.find(id);
     }
     
-
+   
     @FacesConverter(forClass = Adminrol.class)
     public static class AdminrolControllerConverter implements Converter {
 

@@ -192,6 +192,10 @@ public class UsuarioController implements Serializable {
         return ejbFacade.find(id);
     }
 
+    public int getItemsCount() {
+        return getFacade().count();
+    }
+
     @FacesConverter(forClass = Usuario.class)
     public static class UsuarioControllerConverter implements Converter {
 

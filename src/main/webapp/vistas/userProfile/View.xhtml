@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Perfil"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="card align-items-center text-center shadow-1-strong">
+                            <h5 class="card-header">Mi Perfil</h5>
+                            <div class="card-body">
+                                <h:graphicImage class="img-fluid rounded-2 p-1" width="110" height="80" value="#{resource['img/profile.jpg']}"/>
+                                <h5 class="card-title"> #{userlog.nombre} #{userlog.apellido} </h5>
+                                <p class="text-secondary mb-1">Full Stack Developer</p>
+                                <p class="text-muted font-size-sm">Chimborazo, Riobamba, EC</p>
+
+                                <button class="btn btn-outline-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal"><i class="fas fa-key fa-lg me-2"/> Cambiar contraseña</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="card mb-3 shadow-1-strong">
+                            <h:form prependId="false">
+                                <h4 class="card-title d-flex justify-content-center mt-2"> Datos Personales</h4>
+                                <div class="card-body">
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <h:inputText id="nombre" class="form-control" />
+                                                <label class="form-label" for="form3Example1">Nombres</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <h:inputText id="apellido" class="form-control" />
+                                                <label class="form-label" for="form3Example2">Apellidos</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <h:inputText id="email" class="form-control" />
+                                                <label class="form-label" for="form2Example1">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col col-sm-4">
+                                            <div class="form-outline">
+                                                <h:inputText id="telef" class="form-control" value="+593 995645711" />
+                                                <label class="form-label" for="typePhone">Teléfono</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <h:inputText id="dir" class="form-control" value="Chimborazo, Riobamba, EC" />
+                                                <label class="form-label" for="form1">Dirección</label>
+                                            </div>  
+                                        </div>
+                                    </div>
+
+                                    <hr/>
+
+                                    <div class="row mt-5">
+                                        <div class="col-sm-12">
+                                            <h:commandButton class="btn btn-primary" value="Guardar Cambios" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Modal -->
+                <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+                    <div class="modal-dialog   modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Seguridad</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <h:form id="formUpdatePass" prependId="false">
+                                <div class="modal-body">
+                                    <p class="fw-bolder fs-5">Cambiar Contraseña</p>
+                                    <h:inputText id="emailform" class="border border-white form form-control" value="#{updatePasswordController.selected.email}" />
+                                    <p>Como vas a acceder a información confidencial, es necesario que confirmes tu contraseña.</p>
+                                    <h:inputSecret class="form-control mb-4" value="#{updatePasswordController.selected.password}" a:placeholder='Contraseña antigua'/>
+                                    <h:inputSecret class="form-control" value="#{updatePasswordController.newPass}" a:placeholder='Contraseña nueva'/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-mdb-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                    <h:commandButton class="btn btn-primary" action="#{updatePasswordController.UpdatePasswordAdmin}" value="Actualizar">
+                                          <f:ajax execute="formUpdatePass"/>
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <script>
+                function profileData() {
+                    document.getElementById("nombre").value = "#{userlog.nombre}";
+                    document.getElementById("apellido").value = "#{userlog.apellido}";
+                    document.getElementById("email").value = "#{userlog.email}";
+                    document.getElementById("emailform").value = "#{userlog.email}";
+                    
+                }
+                profileData();
+
+            </script>
+
+        </ui:define>  
+
+    </ui:composition>
+</html>
+
