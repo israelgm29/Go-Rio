@@ -13,5 +13,5 @@ public class Const {
     public static final String URL = "/opt/server/docs/";
     public static final String SEPARATOR = "/";
     public static final String CATEGORY = "category";
-    public static final String URLSERVER = "http://localhost:8080";
+    public static final String URLSERVER = "http://192.168.1.13:8080";
 }

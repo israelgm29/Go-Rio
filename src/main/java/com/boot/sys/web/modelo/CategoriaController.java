@@ -245,6 +245,8 @@ public class CategoriaController implements Serializable {
             current.setImagen(uploadlink);
             update();
             destination = "";
+        }else{
+         update();
         }
     }
 
