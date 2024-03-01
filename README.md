@@ -51,15 +51,15 @@ Puedes ayudar a mejorar esta aplicacion, realizando cambios en la rama Develop .
 ## Screenshot
 ---
 Login
-<p align="center"><img src="https://github.com/israelgm29/WebAppTurismo/blob/9e8b68498dddb1816791f8614ebdc80572f9c56b/inicio.png"/></p> 
+<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/inicio.png"/></p> 
 Sitios Turisticos
-<p align="center"><img src="https://github.com/israelgm29/WebAppTurismo/blob/9e8b68498dddb1816791f8614ebdc80572f9c56b/Sitios%20Turisticos.png"/></p> 
+<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/Turisticos.png"/></p> 
 Añadir un nuevo sitio
-<p align="center"><img src="https://github.com/israelgm29/WebAppTurismo/blob/9e8b68498dddb1816791f8614ebdc80572f9c56b/Nuevo%20Sitio%20Turistico.png"/></p> 
+<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/Turistico.png"/></p> 
 Categorias 
-<p align="center"><img src="categorias.png"/></p> 
+<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/categorias.png"/></p> 
 Paises
-<p align="center"><img src="https://github.com/israelgm29/WebAppTurismo/blob/9e8b68498dddb1816791f8614ebdc80572f9c56b/paises.png"/></p> 
+<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/paises.png"/></p> 
 
 
 ## Autor/es
