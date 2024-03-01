@@ -53,7 +53,7 @@ Puedes ayudar a mejorar esta aplicacion, realizando cambios en la rama Develop .
 Login
 <p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/inicio.png"/></p> 
 Sitios Turisticos
-<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/Turisticos.png"/></p> 
+<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/Sitios%20Turisticos.png"/></p> 
 Añadir un nuevo sitio
 <p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/Turistico.png"/></p> 
 Categorias 
