@@ -9,7 +9,7 @@ Esta es una pequeña aplicación web para agregar sitios turisticos desarrollada
 
 <h1 align="center"> Aplicacion Web</h1>
 <p align="center"> Pagina de Logeo y Registro</p>
-<p align="center"><img src="https://github.com/israelgm29/WebAppTurismo/blob/cca9f7f49a63eefebaefd435a698654d522c839e/inicio.png"/></p> 
+<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/inicio.png"/></p> 
 
 
 ## Herramientas Backend y Frontend
