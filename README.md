@@ -55,7 +55,7 @@ Login
 Sitios Turisticos
 <p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/Sitios%20Turisticos.png"/></p> 
 Añadir un nuevo sitio
-<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/Turistico.png"/></p> 
+<p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/Nuevo%20Sitio%20Turistico.png"/></p> 
 Categorias 
 <p align="center"><img src="https://github.com/israelgm29/Go-Rio/blob/master/categorias.png"/></p> 
 Paises
