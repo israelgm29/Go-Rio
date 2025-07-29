@@ -7,10 +7,10 @@ package com.boot.sys.web.modelo;
 
 import com.boot.sys.web.beans.AdminrolFacade;
 import com.boot.sys.web.entidaes.Adminrol;
-import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
+import jakarta.ejb.EJB;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**

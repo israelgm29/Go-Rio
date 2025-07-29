@@ -9,11 +9,11 @@ import com.boot.sys.web.beans.LugarFacade;
 import com.boot.sys.web.entidaes.Lugar;
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.model.DataModel;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import jakarta.ejb.EJB;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.model.DataModel;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 /**
  *

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -26,7 +26,7 @@
                     <h:outputLabel value="#{bundle.CreateLugarLabel_puntoy}" for="puntoy" />
                     <h:inputText class="form-control form-control-sm" id="puntoy" value="#{lugarController.selected.puntoy}" title="#{bundle.CreateLugarTitle_puntoy}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_puntoy}"/>
                     <h:outputLabel value="#{bundle.CreateLugarLabel_imagen}" for="imagen" />
-                    <h:inputFile  id="file-id"  value="#{lugarController.imagen}" alt="upload file"></h:inputFile> 
+                    <h:inputFile  id="file-id"  value="#{lugarController.imagen}" ></h:inputFile> 
                     <h:outputLabel value="#{bundle.CreateLugarLabel_categoria}" for="categoria" />
                     <h:selectOneMenu class="form-select form-select-sm" id="categoria1" value="#{lugarController.selected.categoria}" title="#{bundle.CreateLugarTitle_categoria1}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_categoria1}">
                         <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>

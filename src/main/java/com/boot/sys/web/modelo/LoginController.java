@@ -8,11 +8,11 @@ package com.boot.sys.web.modelo;
 import com.boot.sys.web.beans.AdminrolFacade;
 import com.boot.sys.web.entidaes.Adminrol;
 import com.boot.sys.web.modelo.util.SessionUtils;
-import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+import jakarta.ejb.EJB;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**

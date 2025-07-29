@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:pt="jakarta.faces.passthrough"
+      xmlns:f="jakarta.faces.core">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="Perfil"></h:outputText>
@@ -97,8 +97,8 @@
                                     <p class="fw-bolder fs-5">Cambiar Contraseña</p>
                                     <h:inputText id="emailform" class="border border-white form form-control" value="#{updatePasswordController.selected.email}" />
                                     <p>Como vas a acceder a información confidencial, es necesario que confirmes tu contraseña.</p>
-                                    <h:inputSecret class="form-control mb-4" value="#{updatePasswordController.selected.password}" a:placeholder='Contraseña antigua'/>
-                                    <h:inputSecret class="form-control" value="#{updatePasswordController.newPass}" a:placeholder='Contraseña nueva'/>
+                                    <h:inputSecret class="form-control mb-4" value="#{updatePasswordController.selected.password}" pt:placeholder='Contraseña antigua'/>
+                                    <h:inputSecret class="form-control" value="#{updatePasswordController.newPass}" pt:placeholder='Contraseña nueva'/>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-light" data-mdb-dismiss="modal">

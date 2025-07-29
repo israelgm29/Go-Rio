@@ -6,16 +6,11 @@
 package com.boot.sys.web.beans;
 
 import com.boot.sys.web.entidaes.Lugar;
-import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.faces.model.ArrayDataModel;
-import javax.faces.model.DataModel;
-import javax.faces.model.ResultDataModel;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import sun.util.logging.resources.logging;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  *
